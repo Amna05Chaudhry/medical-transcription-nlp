@@ -1,0 +1,69 @@
+  lstm epoch  1 loss 2.604 val macro-F1=0.151 acc=0.198 (39s)
+  lstm epoch  2 loss 2.463 val macro-F1=0.181 acc=0.158 (62s)
+  lstm epoch  3 loss 2.296 val macro-F1=0.184 acc=0.221 (85s)
+  lstm epoch  4 loss 2.133 val macro-F1=0.374 acc=0.396 (107s)
+  lstm epoch  5 loss 1.894 val macro-F1=0.324 acc=0.378 (134s)
+  lstm epoch  6 loss 1.725 val macro-F1=0.476 acc=0.495 (156s)
+  lstm epoch  7 loss 1.463 val macro-F1=0.552 acc=0.559 (180s)
+  lstm epoch  8 loss 1.288 val macro-F1=0.572 acc=0.586 (203s)
+  lstm epoch  9 loss 1.065 val macro-F1=0.554 acc=0.568 (225s)
+  lstm epoch 10 loss 0.863 val macro-F1=0.612 acc=0.622 (251s)
+  lstm epoch 11 loss 0.712 val macro-F1=0.608 acc=0.644 (276s)
+  lstm epoch 12 loss 0.601 val macro-F1=0.582 acc=0.631 (297s)
+  lstm epoch 13 loss 0.491 val macro-F1=0.646 acc=0.649 (318s)
+  lstm epoch 14 loss 0.413 val macro-F1=0.655 acc=0.658 (339s)
+  lstm epoch 15 loss 0.338 val macro-F1=0.652 acc=0.676 (362s)
+  lstm epoch 16 loss 0.262 val macro-F1=0.672 acc=0.689 (386s)
+  lstm epoch 17 loss 0.242 val macro-F1=0.672 acc=0.676 (408s)
+  lstm epoch 18 loss 0.200 val macro-F1=0.671 acc=0.703 (429s)
+  lstm epoch 19 loss 0.154 val macro-F1=0.690 acc=0.712 (452s)
+  lstm epoch 20 loss 0.162 val macro-F1=0.702 acc=0.716 (473s)
+  lstm epoch 21 loss 0.116 val macro-F1=0.703 acc=0.725 (495s)
+  lstm epoch 22 loss 0.106 val macro-F1=0.722 acc=0.739 (523s)
+  lstm epoch 23 loss 0.092 val macro-F1=0.704 acc=0.743 (548s)
+  lstm epoch 24 loss 0.081 val macro-F1=0.735 acc=0.752 (572s)
+  lstm epoch 25 loss 0.065 val macro-F1=0.728 acc=0.734 (596s)
+  lstm epoch 26 loss 0.055 val macro-F1=0.727 acc=0.743 (627s)
+  lstm epoch 27 loss 0.050 val macro-F1=0.711 acc=0.743 (656s)
+  lstm epoch 28 loss 0.046 val macro-F1=0.698 acc=0.730 (690s)
+  lstm epoch 29 loss 0.041 val macro-F1=0.696 acc=0.730 (724s)
+BiLSTM (PyTorch): val macro-F1=0.735 acc=0.752 | test macro-F1=0.696 acc=0.749 | 724s
+  gru epoch  1 loss 2.649 val macro-F1=0.025 acc=0.063 (72s)
+  gru epoch  2 loss 2.540 val macro-F1=0.169 acc=0.149 (219s)
+  gru epoch  3 loss 2.285 val macro-F1=0.245 acc=0.275 (268s)
+  gru epoch  4 loss 1.920 val macro-F1=0.475 acc=0.455 (332s)
+  gru epoch  5 loss 1.531 val macro-F1=0.503 acc=0.482 (383s)
+  gru epoch  6 loss 1.178 val macro-F1=0.575 acc=0.568 (425s)
+  gru epoch  7 loss 0.889 val macro-F1=0.618 acc=0.622 (466s)
+  gru epoch  8 loss 0.702 val macro-F1=0.640 acc=0.667 (518s)
+  gru epoch  9 loss 0.528 val macro-F1=0.688 acc=0.698 (577s)
+  gru epoch 10 loss 0.424 val macro-F1=0.698 acc=0.721 (617s)
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\ua\Documents\Projects\medical-transcription-nlp\src\train_rnn.py", line 134, in <module>
+    main()
+  File "C:\Users\ua\Documents\Projects\medical-transcription-nlp\src\train_rnn.py", line 130, in main
+    train_one(cell, train, val, test, classes, vocab)
+  File "C:\Users\ua\Documents\Projects\medical-transcription-nlp\src\train_rnn.py", line 98, in train_one
+    loss = loss_fn(model(Xtr[b]), ytr[b])
+                   ^^^^^^^^^^^^^
+  File "C:\Users\ua\Documents\Projects\medical-transcription-nlp\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1787, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ua\Documents\Projects\medical-transcription-nlp\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1798, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ua\Documents\Projects\medical-transcription-nlp\src\train_rnn.py", line 65, in forward
+    h, _ = self.rnn(self.drop(self.emb(x)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ua\Documents\Projects\medical-transcription-nlp\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1787, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ua\Documents\Projects\medical-transcription-nlp\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1798, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ua\Documents\Projects\medical-transcription-nlp\.venv\Lib\site-packages\torch\nn\modules\rnn.py", line 1441, in forward
+    result = _VF.gru(
+             ^^^^^^^^
+RuntimeError: [enforce fail at alloc_cpu.cpp:117] data. DefaultCPUAllocator: not enough memory: you tried to allocate 9830400 bytes.

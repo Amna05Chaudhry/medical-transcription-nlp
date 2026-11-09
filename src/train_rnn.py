@@ -29,8 +29,8 @@ ROOT = Path(__file__).resolve().parents[1]
 MODELS_DIR = ROOT / "models"
 MAX_LEN = 300
 VOCAB_SIZE = 20_000
-EPOCHS = 12
-PATIENCE = 3
+EPOCHS = 30
+PATIENCE = 5
 BATCH = 32
 SEED = 42
 
