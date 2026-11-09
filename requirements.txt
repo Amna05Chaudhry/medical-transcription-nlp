@@ -1,0 +1,8 @@
+# App + data pipeline + linear models (all you need to run the demo)
+gradio==6.31.0
+pandas==3.1.1
+numpy==2.5.4
+scikit-learn==1.9.1
+scipy==1.18.1
+joblib==1.6.0
+plotly==7.1.0
