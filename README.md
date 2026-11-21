@@ -1,7 +1,7 @@
 # 🩺 MedScribe Classifier: medical transcription → specialty
 
 **Paste a clinical note and get its medical specialty, a confidence chart, and the exact words that drove the decision.**
-NLP on 1,482 de-duplicated MTSamples transcriptions across 13 specialties, with honest held-out evaluation of linear, recurrent and transformer models.
+NLP on 1,482 de-duplicated MTSamples transcriptions across 13 specialties, with honest held-out evaluation of linear and recurrent models.
 
 ![Classify tab](docs/screenshot_classify.png)
 
@@ -48,21 +48,21 @@ flowchart LR
 
 All models are scored on the **same held-out test set (223 notes)**. Macro-F1 weighs every specialty equally, which matters because the classes range from 42 to 261 notes.
 
-| Model | Test macro-F1 | Test accuracy | Val macro-F1 | Train time (CPU) |
-|---|---:|---:|---:|---:|
-| TF-IDF + Linear SVM | 0.849 | 0.870 | 0.858 | 8 s |
-| TF-IDF + Logistic Regression | 0.829 | 0.852 | 0.824 | 23 s |
-| TF-IDF + Complement NB | 0.773 | 0.807 | 0.767 | 5 s |
+| Model | Test macro-F1 | Test accuracy | Val macro-F1 | Train time (CPU) |
+|---|---:|---:|---:|---:|
+| TF-IDF + Linear SVM | 0.849 | 0.870 | 0.858 | 8 s |
+| TF-IDF + Logistic Regression | 0.829 | 0.852 | 0.824 | 23 s |
+| TF-IDF + Complement NB | 0.773 | 0.807 | 0.767 | 5 s |
 | BiLSTM (PyTorch) | 0.696 | 0.749 | 0.735 | 724 s |
 
-> **Status (WIP):** the BiGRU run was killed by an out-of-memory error at epoch 10 (val macro-F1 0.698 at that point) on a shared 8 GB machine, and the DistilBERT fine-tune has not been run yet. Re-run `python -m src.train_rnn` and `python -m src.train_transformer --batch 8` to add them. Screenshots in `docs/` are still to be captured.
+> **Not in the table yet:** a BiGRU (`src/train_rnn.py`) and a DistilBERT fine-tune (`src/train_transformer.py`) are included as scripts. They need more memory than the 8 GB CPU machine used here, so their scores will be added after a GPU run.
 
 *Train times are wall-clock on a shared 8-core CPU laptop with other jobs running, so read them as rough.*
 
 Observations:
 - **TF-IDF + linear models win** on this small dataset (~1k training notes). Specialty is mostly signalled by vocabulary (*cataract*, *stent*, *colonoscopy*), which bag-of-n-grams captures well.
 - The **recurrent models** need far more data to learn their embeddings from scratch.
-- **DistilBERT** sees only the first 256 word-pieces of notes whose median length is ~400 words, and was fine-tuned for only a few epochs on CPU.
+- A **transformer** would see only the first 256 word-pieces of notes whose median length is ~400 words, so truncation is the first thing to handle when it is run.
 - Most errors flow **into *General Medicine***. Gastroenterology, Nephrology, Psychiatry and Hematology notes written as general history-and-physicals look like GP notes, and *General Medicine* itself is the hardest class (F1 ≈ 0.70). The weakest specialties are **Nephrology (F1 0.50, 6 test notes)** and **Pain Management (0.67)**. Ophthalmology, ENT, Orthopedic and Urology score ≥ 0.92.
 
 ### What the original notebook reported, and what was fixed
